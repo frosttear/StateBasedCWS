@@ -1,4 +1,4 @@
-package model;
+package chaoslab.service.model;
 
 import java.util.HashSet;
 
@@ -9,6 +9,8 @@ import java.util.HashSet;
  *
  */
 public class AbstractOperation {
+	/** function's id*/
+	private int mFunctionId;
 	/** A mark indicate the operation's functional attribute. */
 	private String mFunction;
 	/** The operation's name*/
@@ -17,6 +19,9 @@ public class AbstractOperation {
 	private HashSet<AbstractOperation> mPrecedeSet;
 	/** The succeede nodes list*/
 	private HashSet<AbstractOperation> mSucceedeSet;
+	/** Only acceptable operation can be the end of a call to a service.*/
+	private boolean isAcceptable = false;
+	
 	
 	public AbstractOperation(String function, String name){
 		mFunction 		= function;
@@ -24,6 +29,17 @@ public class AbstractOperation {
 		mPrecedeSet 	= new HashSet<AbstractOperation>();
 		mSucceedeSet 	= new HashSet<AbstractOperation>();
 	}
+	
+	public AbstractOperation(int functionId, String function, String name){
+		mFunctionId	    = functionId;
+		mFunction 		= function;
+		mName 	 	 	= name;
+		mPrecedeSet 	= new HashSet<AbstractOperation>();
+		mSucceedeSet 	= new HashSet<AbstractOperation>();
+	}
+	
+
+	
 	/**
 	 * Get name
 	 * @return
@@ -106,12 +122,25 @@ public class AbstractOperation {
 	public boolean isEndOperation(){
 		return mSucceedeSet.size() == 0;
 	}
+	
+	public void setIsAcceptable(boolean flag){
+		isAcceptable = flag;
+	}
+	
+	public boolean isAcceptable(){
+		return isAcceptable;
+	}
+	
 	/**
 	 * Override toString to simplify output.
 	 */
 	@Override
 	public String toString(){
 		return mName;
+	}
+	
+	public int getFunctionId(){
+		return mFunctionId;
 	}
 	
 }

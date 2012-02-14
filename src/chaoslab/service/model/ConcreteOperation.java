@@ -1,13 +1,12 @@
-package model;
-
-import java.util.ArrayList;
+package chaoslab.service.model;
 /**
  * The atomic service in real world.
  * @author liu.zhenxing
  *
  */
 public class ConcreteOperation extends AbstractOperation {
-	private ArrayList<QoS> mQoSList;
+	/** each QoS in mQoSList indicates distinct kinds of QoS*/
+	private QoS []mQoSList;
 	/** Indicate which service this operation belongs to.*/
 	private Service		   mService;
 	/**
@@ -16,8 +15,8 @@ public class ConcreteOperation extends AbstractOperation {
 	 * @param name
 	 * @param qosList
 	 */
-	public ConcreteOperation(String function, String name, ArrayList<QoS> qosList, Service service){
-		super(function, name);
+	public ConcreteOperation(int functionId,  String function, String name, QoS[] qosList, Service service){
+		super(functionId, function, name);
 		mQoSList = qosList;
 		mService = service;
 	}
@@ -25,7 +24,7 @@ public class ConcreteOperation extends AbstractOperation {
 	 * get qos list(only readable)
 	 * @return
 	 */
-	public final ArrayList<QoS> getQoSList(){
+	public final QoS[] getQoSList(){
 		return mQoSList;
 	}
 	/**

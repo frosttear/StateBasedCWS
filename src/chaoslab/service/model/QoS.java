@@ -1,4 +1,4 @@
-package model;
+package chaoslab.service.model;
 
 /**
  * QoS, Quality Of Service.Numeric metrics for evaluating a service.
@@ -83,9 +83,9 @@ public class QoS {
 	 * @return value
 	 */
 	public double getValue(){
-		if (isPositive())
-			return - mValue;
-		else
+	//	if (isPositive())
+	//		return - mValue;
+	//	else
 			return mValue;
 	}
 	/**
@@ -95,6 +95,10 @@ public class QoS {
 	public String getTypeName(){
 		return mType.getName();
 	}
+	
+	public QoSType getType(){
+		return mType;
+	}
 	/**
 	 * Return whether it is a positive attribute.
 	 * @return isPositive
@@ -102,5 +106,20 @@ public class QoS {
 	public boolean isPositive(){
 		return mType.isPositive();
 	}
-
+	/**
+	 * add one QoS's value to current one.
+	 * @param qos
+	 */
+	public void add(QoS qos){
+		mValue += qos.getValue();
+	}
+	public void add(double value){
+		mValue += value;
+	}
+	/**
+	 * 
+	 */
+	public void remove(QoS qos){
+		mValue -= qos.getValue();
+	}
 }

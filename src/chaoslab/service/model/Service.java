@@ -1,4 +1,4 @@
-package model;
+package chaoslab.service.model;
 
 import java.util.HashSet;
 
@@ -10,11 +10,11 @@ import java.util.HashSet;
 public class Service {
 	private String mName;
 	/** indicate the start operations*/
-	private HashSet<ConcreteOperation> mStartOperationSet;
+	private HashSet<ConcreteOperation> mStartOperationSet = new HashSet<ConcreteOperation>();
 	/** indicate the end operations*/
-	private HashSet<ConcreteOperation> mEndOperationSet;
+	private HashSet<ConcreteOperation> mEndOperationSet = new HashSet<ConcreteOperation>();
 	public Service(String name){
-		mName = name;
+		mName = name;		
 	}
 	/**
 	 * add a start operation
